@@ -34,10 +34,6 @@
         {
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=()"
-        },
-        {
-          "key": "X-DNS-Prefetch-Control",
-          "value": "on"
         }
       ]
     },
@@ -47,50 +43,20 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
-        },
-        {
-          "key": "CDN-Cache-Control",
-          "value": "public, max-age=31536000, stale-while-revalidate=604800"
         }
       ]
     },
     {
-      "source": "/favicon.ico",
+      "source": "/*.html",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=86400, must-revalidate"
+          "value": "public, max-age=86400"
         }
       ]
     },
     {
-      "source": "/(.*).js",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/javascript; charset=utf-8"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/(.*).css",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/css; charset=utf-8"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/(.*).woff2",
+      "source": "/*.js",
       "headers": [
         {
           "key": "Cache-Control",
@@ -99,11 +65,11 @@
       ]
     },
     {
-      "source": "/(.*).svg",
+      "source": "/*.css",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=86400, s-maxage=604800"
+          "value": "public, max-age=31536000, immutable"
         }
       ]
     }

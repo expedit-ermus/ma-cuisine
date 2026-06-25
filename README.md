@@ -1,6 +1,6 @@
-# MA Cuisine - Restaurant Marocain
+# MA Cuisine - Restaurant Marocain 🍽️
 
-Application web moderne pour restaurant marocain avec assistant chat intégré.
+Application web moderne pour restaurant marocain avec assistant chat intégré pour les commandes.
 
 ## 🚀 Déploiement sur Vercel
 
@@ -9,7 +9,7 @@ Application web moderne pour restaurant marocain avec assistant chat intégré.
 1. **Connecter le repository à Vercel**
    - Allez sur [vercel.com](https://vercel.com)
    - Cliquez sur "New Project"
-   - Importez votre repository GitHub/GitLab
+   - Importez votre repository GitHub
 
 2. **Configuration automatique**
    - Vercel détectera automatiquement `vercel.json`
@@ -34,12 +34,27 @@ vercel
 vercel --prod
 ```
 
-## ⚡ Optimisations Vercel
+## 📁 Structure du projet
 
-- **Edge Caching**: Assets mis en cache au niveau mondial
-- **CDN**: Distribution via le réseau Edge de Vercel
-- **Build**: Optimisé avec Vite + SWC
-- **Code Splitting**: Bundles séparés pour vendor, UI, et charts
+```
+├── public/
+│   └── site-MA-Cuisine.html   # Site principal (HTML statique)
+├── src/
+│   ├── components/
+│   │   └── ChatBot.tsx        # Assistant chat React
+│   ├── pages/
+│   │   ├── Index.tsx          # Page d'accueil
+│   │   └── NotFound.tsx       # Page 404
+│   └── App.tsx                # Application principale
+├── vercel.json                # Configuration Vercel
+├── vite.config.ts             # Configuration Vite
+└── package.json
+```
+
+## 🌐 URLs après déploiement
+
+- **Application React** : `https://macuisine.vercel.app`
+- **Site principal** : `https://macuisine.vercel.app/site-MA-Cuisine.html`
 
 ## 🛡️ Sécurité
 
@@ -53,6 +68,7 @@ vercel --prod
 - CSS minifié
 - Source maps désactivés en production
 - Tree shaking activé
+- CDN Edge Vercel
 
 ## 🛠️ Développement local
 
@@ -68,30 +84,6 @@ npm run build
 
 # Prévisualiser le build
 npm run preview
-```
-
-## 🌐 Configuration
-
-### Variables d'environnement
-
-Créer un fichier `.env.local`:
-
-```env
-VITE_APP_NAME="MA Cuisine"
-VITE_APP_URL=https://macuisine.vercel.app
-```
-
-## 📁 Structure du projet
-
-```
-├── vercel.json          # Configuration Vercel
-├── vite.config.ts       # Configuration Vite
-├── src/
-│   ├── components/      # Composants React
-│   ├── pages/           # Pages de l'application
-│   ├── hooks/           # Hooks personnalisés
-│   └── lib/             # Utilitaires
-└── public/              # Assets statiques
 ```
 
 ## 📜 Licence

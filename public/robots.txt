@@ -2,5 +2,11 @@
 User-agent: *
 Allow: /
 
+# Disallow sensitive paths
+Disallow: /api/
+Disallow: /server/
+Disallow: /node_modules/
+Disallow: /\.env
+
 # Sitemap
 Sitemap: https://macuisine.vercel.app/sitemap.xml

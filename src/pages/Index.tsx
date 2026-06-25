@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ExternalLink, FileCode, Home } from "lucide-react";
+import ChatBot from "@/components/ChatBot";
 
 const Index = () => {
   return (
@@ -10,7 +11,7 @@ const Index = () => {
             MA Cuisine
           </h1>
           <p className="text-xl text-purple-200">
-            Your uploaded site is ready to view
+            Votre site est prêt avec un assistant chat !
           </p>
         </div>
 
@@ -21,7 +22,7 @@ const Index = () => {
               className="bg-purple-600 hover:bg-purple-700 text-white gap-2"
             >
               <Home className="h-5 w-5" />
-              View Site in App
+              Voir le site
             </Button>
           </a>
           <a href="/site-MA-Cuisine-v5__3_.html" target="_blank" rel="noopener noreferrer">
@@ -31,7 +32,7 @@ const Index = () => {
               className="border-purple-400 text-purple-200 hover:bg-purple-800/30 gap-2"
             >
               <ExternalLink className="h-5 w-5" />
-              Open in New Tab
+              Ouvrir dans un nouvel onglet
             </Button>
           </a>
           <a href="/site-MA-Cuisine-v5__3_.html" download>
@@ -41,15 +42,18 @@ const Index = () => {
               className="border-purple-400 text-purple-200 hover:bg-purple-800/30 gap-2"
             >
               <FileCode className="h-5 w-5" />
-              Download HTML
+              Télécharger HTML
             </Button>
           </a>
         </div>
 
         <p className="text-sm text-purple-300/60">
-          HTML file: <code className="bg-black/30 px-2 py-1 rounded">public/site-MA-Cuisine-v5__3_.html</code>
+          💬 Cliquez sur l'icône de chat en bas à droite pour discuter et passer commande
         </p>
       </div>
+      
+      {/* ChatBot component */}
+      <ChatBot />
     </div>
   );
 };

@@ -1,18 +1,14 @@
 {
-  "name": "ma-cuisine",
-  "version": "1.0.0",
+  "name": "vite_react_shadcn_ts",
+  "version": "0.0.0",
   "private": true,
-  "homepage": "https://macuisine.vercel.app",
-  "description": "MA Cuisine - Restaurant marocain avec assistant de commande",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "build:dev": "vite build --mode development",
-    "build:preview": "vite build && vite preview",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "postinstall": "rm -rf node_modules/.vite"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -57,7 +53,7 @@
     "react-dom": "^19.2.3",
     "react-hook-form": "^7.53.0",
     "react-resizable-panels": "^2.1.3",
-    "react-router-dom": "^6.26.2",
+    "react-router-dom": "^6.30.4",
     "recharts": "^2.12.7",
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.2",
@@ -80,13 +76,8 @@
     "globals": "^15.9.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.11",
-    "terser": "^5.48.0",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^8.0.0"
-  },
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.0.0"
   }
 }

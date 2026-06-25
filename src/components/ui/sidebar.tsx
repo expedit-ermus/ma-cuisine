@@ -82,7 +82,10 @@ const SidebarProvider = React.forwardRef<
         }
 
         // This sets the cookie to keep the sidebar state.
-        document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
+        // Secure flag is added for HTTPS in production
+        const isProduction = window.location.protocol === 'https:';
+        const secureFlag = isProduction ? '; Secure' : '';
+        document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}${secureFlag}; SameSite=Lax`;
       },
       [setOpenProp, open],
     );

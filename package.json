@@ -1,7 +1,9 @@
 {
-  "name": "vite_react_shadcn_ts",
-  "version": "0.0.0",
+  "name": "ma-cuisine",
+  "version": "1.0.0",
   "private": true,
+  "homepage": "https://macuisine.vercel.app",
+  "description": "MA Cuisine - Restaurant marocain avec assistant de commande",
   "type": "module",
   "scripts": {
     "dev": "vite",

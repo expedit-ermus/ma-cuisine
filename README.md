@@ -1,6 +1,6 @@
 # MA Cuisine - Restaurant Marocain 🍽️
 
-Application web moderne pour restaurant marocain avec assistant chat intégré pour les commandes.
+Application web moderne pour restaurant avec chatbot intégré pour les commandes.
 
 ## 🚀 Déploiement sur Vercel
 
@@ -21,16 +21,8 @@ Application web moderne pour restaurant marocain avec assistant chat intégré p
 ### Déploiement via CLI
 
 ```bash
-# Installer Vercel CLI
 npm i -g vercel
-
-# Se connecter
 vercel login
-
-# Déployer
-vercel
-
-# Déployer en production
 vercel --prod
 ```
 
@@ -38,7 +30,10 @@ vercel --prod
 
 ```
 ├── public/
-│   └── site-MA-Cuisine.html   # Site principal (HTML statique)
+│   ├── site-MA-Cuisine.html   # Site principal (HTML statique)
+│   ├── chatbot.css             # Styles du chatbot
+│   ├── chatbot.js              # Logique du chatbot
+│   └── integrate-chatbot.js     # Script d'intégration
 ├── src/
 │   ├── components/
 │   │   └── ChatBot.tsx        # Assistant chat React
@@ -50,6 +45,45 @@ vercel --prod
 ├── vite.config.ts             # Configuration Vite
 └── package.json
 ```
+
+## 💬 Intégration du Chatbot
+
+### Pour le site HTML statique (`public/site-MA-Cuisine.html`)
+
+Ajoutez ces lignes avant la balise `</body>` :
+
+```html
+<link rel="stylesheet" href="/chatbot.css">
+<script src="/chatbot.js"></script>
+```
+
+Ou utilisez le script d'intégration automatique :
+
+```html
+<script src="/integrate-chatbot.js"></script>
+```
+
+### Fonctionnalités du Chatbot
+
+- 🤖 Assistant virtuel "Emma" avec IA
+- 📋 Menu interactif avec prix
+- 🛒 Panier de commande intégré
+- 🚴 Informations livraison
+- 📅 Prochains événements
+- 📍 Contact et localisation
+- 🌿 Options sans gluten
+
+### Commandes du Chatbot
+
+| Commande | Description |
+|----------|-------------|
+| `menu` | Affiche la carte complète |
+| `commander` | Active le mode commande |
+| `livraison` | Informations livraison |
+| `contact` | Coordonnées du restaurant |
+| `événements` | Calendrier événements |
+| `prix` | Liste des tarifs |
+| `emma` | Histoire de la fondatrice |
 
 ## 🌐 URLs après déploiement
 

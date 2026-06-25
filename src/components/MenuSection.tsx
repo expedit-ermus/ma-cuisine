@@ -1,80 +1,123 @@
 "use client";
 
 import { useState } from "react";
+import { Leaf, Flame, Star, Flower, Wheat } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Plus, Minus, ShoppingBag, ChefHat } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
 
 interface MenuItem {
   id: number;
   name: string;
-  nameAr: string;
   description: string;
   price: number;
+  image: string;
+  tag: string;
+  tagIcon: "leaf" | "flame" | "star" | "flower" | "wheat";
   category: string;
-  image?: string;
-}
-
-interface MenuSectionProps {
-  onAddToCart: (item: MenuItem) => void;
 }
 
 const menuItems: MenuItem[] = [
-  { id: 1, name: "Couscous Royal", nameAr: "كسكسي ملكي", description: "Semoule, légumes, agneau, poulet", price: 18, category: "Plats" },
-  { id: 2, name: "Tajine Poulet Citron", nameAr: "طاجين دجاج بالليمون", description: "Poulet, citrons confits, olives", price: 15, category: "Plats" },
-  { id: 3, name: "Pastilla au Poulet", nameAr: "بسطيلة بالدجاج", description: "Feuille de brick, poulet, amandes", price: 12, category: "Plats" },
-  { id: 4, name: "Kefta Tajine", nameAr: "طاجين كفتة", description: "Boulettes de viande, sauce tomate", price: 14, category: "Plats" },
-  { id: 5, name: "Harira", nameAr: "حريرة", description: "Soupe traditionnelle marocaine", price: 6, category: "Entrées" },
-  { id: 6, name: "Zaalouk", nameAr: "زلalous", description: "Caviar d'aubergines", price: 5, category: "Entrées" },
-  { id: 7, name: "Mint Tea", nameAr: "شاي بالنعناع", description: "Thé à la menthe frais", price: 3, category: "Boissons" },
-  { id: 8, name: "Jus d'orange", nameAr: "عصير برتقال", description: "Jus pressé frais", price: 4, category: "Boissons" },
+  {
+    id: 1,
+    name: "Beignets Sucrés (x10)",
+    description: "Doux, moelleux et légèrement sucrés. Un classique indémodable qui fond dans la bouche.",
+    price: 5,
+    image: "https://i.postimg.cc/dtJbBFH0/beignets.jpg",
+    tag: "Classique",
+    tagIcon: "star",
+    category: "Beignets"
+  },
+  {
+    id: 2,
+    name: "Beignets Salés (x10)",
+    description: "Savoureux et relevés avec des épices africaines authentiques. Parfait pour l'apéritif.",
+    price: 5,
+    image: "https://i.postimg.cc/BvXnN8HY/beignets-sales.jpg",
+    tag: "Épicé",
+    tagIcon: "flame",
+    category: "Beignets"
+  },
+  {
+    id: 3,
+    name: "Beignets Vermicelles (x10)",
+    description: "Une texture unique avec des vermicelles croustillants. Une explosion de saveurs.",
+    price: 5,
+    image: "https://i.postimg.cc/fy4d0qYF/vermhicelles.jpg",
+    tag: "Populaire",
+    tagIcon: "star",
+    category: "Beignets"
+  },
+  {
+    id: 4,
+    name: "Jus Gingembre-Hibiscus",
+    description: "Rafraîchissant et plein de vertus. Le mélange parfait entre douceur et fraîcheur.",
+    price: 5,
+    image: "https://i.postimg.cc/85CckX2j/jus.jpg",
+    tag: "Infusé",
+    tagIcon: "flower",
+    category: "Jus"
+  },
+  {
+    id: 5,
+    name: "Beignets Sans Gluten",
+    description: "Option disponible sur commande. Les mêmes saveurs, sans gluten.",
+    price: 7,
+    image: "https://i.postimg.cc/dtJbBFH0/beignets.jpg",
+    tag: "Sur commande",
+    tagIcon: "wheat",
+    category: "Options"
+  },
+  {
+    id: 6,
+    name: "Commande Personnalisée",
+    description: "Commande minimum 40€. Contactez-nous pour un devis personnalisé.",
+    price: 40,
+    image: "https://i.postimg.cc/8kBBcJqX/Ma-Cuisine-1.jpg",
+    tag: "Événement",
+    tagIcon: "star",
+    category: "Options"
+  }
 ];
 
-const categories = ["Tous", "Plats", "Entrées", "Boissons"];
+const categories = ["Tous", "Beignets", "Jus", "Options"];
 
-export default function MenuSection({ onAddToCart }: MenuSectionProps) {
-  const [selectedCategory, setSelectedCategory] = useState("Tous");
-  const [quantities, setQuantities] = useState<Record<number, number>>({});
+const tagIcons = {
+  leaf: Leaf,
+  flame: Flame,
+  star: Star,
+  flower: Flower,
+  wheat: Wheat
+};
 
-  const filteredItems = selectedCategory === "Tous" 
+export default function MenuSection() {
+  const [activeCategory, setActiveCategory] = useState("Tous");
+
+  const filteredItems = activeCategory === "Tous" 
     ? menuItems 
-    : menuItems.filter(item => item.category === selectedCategory);
-
-  const updateQuantity = (id: number, delta: number) => {
-    setQuantities(prev => ({
-      ...prev,
-      [id]: Math.max(0, (prev[id] || 0) + delta)
-    }));
-  };
-
-  const handleAddToCart = (item: MenuItem) => {
-    const qty = quantities[item.id] || 1;
-    for (let i = 0; i < qty; i++) {
-      onAddToCart(item);
-    }
-    setQuantities(prev => ({ ...prev, [item.id]: 0 }));
-  };
+    : menuItems.filter(item => item.category === activeCategory);
 
   return (
-    <section id="menu" className="py-16 px-4 bg-amber-50">
-      <div className="max-w-6xl mx-auto">
+    <section id="menu" className="py-16 md:py-24 px-4 bg-[#FFF8F0]">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
         <div className="text-center mb-12">
-          <ChefHat className="h-12 w-12 mx-auto text-amber-600 mb-4" />
-          <h2 className="text-4xl font-bold text-amber-900 mb-2">Notre Menu</h2>
-          <p className="text-amber-700">Délices du Maroc</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#8B4513] font-serif mb-4">Notre Menu</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Explorez notre carte complète avec toutes nos créations
+          </p>
         </div>
 
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {categories.map(cat => (
+        {/* Category Tabs */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {categories.map((cat) => (
             <Button
               key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              variant={selectedCategory === cat ? "default" : "outline"}
-              className={selectedCategory === cat 
-                ? "bg-amber-600 hover:bg-amber-700 text-white" 
-                : "border-amber-600 text-amber-600 hover:bg-amber-50"
-              }
+              onClick={() => setActiveCategory(cat)}
+              variant={activeCategory === cat ? "default" : "outline"}
+              className={`rounded-full px-6 ${
+                activeCategory === cat 
+                  ? "bg-[#8B4513] hover:bg-[#D2691E] text-white" 
+                  : "border-2 border-[#8B4513] text-[#8B4513] hover:bg-[#8B4513] hover:text-white"
+              }`}
             >
               {cat}
             </Button>
@@ -82,54 +125,35 @@ export default function MenuSection({ onAddToCart }: MenuSectionProps) {
         </div>
 
         {/* Menu Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredItems.map(item => (
-            <Card key={item.id} className="overflow-hidden hover:shadow-lg transition-shadow bg-white border-amber-200">
-              <CardContent className="p-6">
-                <div className="flex justify-between items-start mb-3">
+        <div className="grid md:grid-cols-2 gap-6">
+          {filteredItems.map((item) => {
+            const IconComponent = tagIcons[item.tagIcon];
+            return (
+              <div 
+                key={item.id}
+                className="flex flex-col sm:flex-row gap-4 bg-white p-4 rounded-2xl hover:shadow-lg transition-all"
+              >
+                <img 
+                  src={item.image} 
+                  alt={item.name}
+                  className="w-full sm:w-28 h-28 object-cover rounded-xl"
+                />
+                <div className="flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-xl font-bold text-amber-900">{item.name}</h3>
-                    <p className="text-amber-600 text-sm font-arabic">{item.nameAr}</p>
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="font-semibold text-[#2C1810]">{item.name}</h3>
+                      <span className="font-bold text-[#8B4513] text-lg">{item.price}€</span>
+                    </div>
+                    <p className="text-gray-600 text-sm mb-2 line-clamp-2">{item.description}</p>
                   </div>
-                  <span className="text-2xl font-bold text-amber-600">{item.price}€</span>
+                  <span className="inline-flex items-center gap-1 bg-green-100 text-green-700 px-2 py-1 rounded-md text-xs w-fit">
+                    <IconComponent className="h-3 w-3" />
+                    {item.tag}
+                  </span>
                 </div>
-                
-                <p className="text-gray-600 text-sm mb-4">{item.description}</p>
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => updateQuantity(item.id, -1)}
-                      className="h-8 w-8 p-0 border-amber-400"
-                    >
-                      <Minus className="h-4 w-4 text-amber-600" />
-                    </Button>
-                    <span className="w-8 text-center font-semibold">
-                      {quantities[item.id] || 1}
-                    </span>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => updateQuantity(item.id, 1)}
-                      className="h-8 w-8 p-0 border-amber-400"
-                    >
-                      <Plus className="h-4 w-4 text-amber-600" />
-                    </Button>
-                  </div>
-                  
-                  <Button 
-                    onClick={() => handleAddToCart(item)}
-                    className="bg-amber-600 hover:bg-amber-700 text-white gap-2"
-                  >
-                    <ShoppingBag className="h-4 w-4" />
-                    Ajouter
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

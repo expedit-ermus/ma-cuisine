@@ -1,19 +1,32 @@
 "use client";
 
 import { useState } from "react";
-import Navigation from "./Navigation";
+import Navbar from "./Navbar";
 import HeroSection from "./HeroSection";
+import ProductsSection from "./ProductsSection";
 import MenuSection from "./MenuSection";
-import ContactSection from "./ContactSection";
-import CartDrawer from "./CartDrawer";
+import AboutSection from "./AboutSection";
+import TestimonialsSection from "./TestimonialsSection";
+import CTASection from "./CTASection";
+import Footer from "./Footer";
+import CartSidebar from "./CartSidebar";
 import CheckoutModal from "./CheckoutModal";
+
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  category: string;
+}
 
 interface CartItem {
   id: number;
   name: string;
-  nameAr: string;
   price: number;
   quantity: number;
+  image: string;
 }
 
 export default function SiteLayout() {
@@ -21,14 +34,15 @@ export default function SiteLayout() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
-  const addToCart = (item: { id: number; name: string; nameAr: string; price: number }) => {
+  const addToCart = (product: Product) => {
     setCart(prev => {
-      const existing = prev.find(i => i.id === item.id);
+      const existing = prev.find(i => i.id === product.id);
       if (existing) {
-        return prev.map(i => i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i);
+        return prev.map(i => i.id === product.id ? { ...i, quantity: i.quantity + 1 } : i);
       }
-      return [...prev, { ...item, quantity: 1 }];
+      return [...prev, { ...product, quantity: 1 }];
     });
+    setIsCartOpen(true);
   };
 
   const updateQuantity = (id: number, delta: number) => {
@@ -46,8 +60,9 @@ export default function SiteLayout() {
   };
 
   const handleCheckout = () => {
-    setIsCheckoutOpen(true);
-    setIsCartOpen(false);
+    if (cart.length > 0) {
+      setIsCheckoutOpen(true);
+    }
   };
 
   const handleOrderComplete = () => {
@@ -57,8 +72,8 @@ export default function SiteLayout() {
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
-    <div className="min-h-screen bg-amber-50">
-      <Navigation 
+    <div className="min-h-screen bg-[#FFF8F0]">
+      <Navbar 
         cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)} 
         onOpenCart={() => setIsCartOpen(true)}
       />
@@ -68,18 +83,14 @@ export default function SiteLayout() {
         cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)}
       />
       
-      <MenuSection onAddToCart={addToCart} />
-      <ContactSection />
-      
-      <footer className="bg-amber-900 text-amber-200 py-8 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-lg font-semibold mb-2">🍽️ MA Cuisine</p>
-          <p className="text-amber-400">Saveurs du Maroc • Paris 10ème</p>
-          <p className="text-amber-500 text-sm mt-4">© 2024 MA Cuisine. Tous droits réservés.</p>
-        </div>
-      </footer>
+      <ProductsSection onAddToCart={addToCart} />
+      <MenuSection />
+      <AboutSection />
+      <TestimonialsSection />
+      <CTASection />
+      <Footer />
 
-      <CartDrawer
+      <CartSidebar
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
         cart={cart}

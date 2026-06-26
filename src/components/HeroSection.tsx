@@ -2,13 +2,9 @@
 
 import { Star, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import heroImage from "@/assets/images/IMG-20231104-WA0011.jpg";
 
-interface HeroSectionProps {
-  onOpenCart: () => void;
-  cartCount: number;
-}
-
-export default function HeroSection({ onOpenCart }: HeroSectionProps) {
+export default function HeroSection({ onOpenCart }: { onOpenCart: () => void }) {
   return (
     <section id="hero" className="relative min-h-screen flex items-center bg-gradient-to-br from-[#FFF8F0] to-[#FFE4C4] overflow-hidden">
       {/* Decorative Pattern */}
@@ -24,15 +20,15 @@ export default function HeroSection({ onOpenCart }: HeroSectionProps) {
           {/* Content */}
           <div className="space-y-6 text-center md:text-left">
             <div className="inline-flex items-center gap-2 bg-[#FF8C00] text-white px-4 py-2 rounded-full text-sm font-medium animate-fade-in">
-              ✨ Beignets Artisanaux & Jus Exotiques
+              ✨ Cuisine Marocaine Artisanale
             </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#8B4513] leading-tight font-serif animate-fade-in-up">
-              Des saveurs <span className="text-[#FF8C00]">d'Afrique</span> dans chaque bouchée
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#8B4513] leading-tight animate-fade-in-up">
+              Saveurs <span className="text-[#FF8C00]">du Maroc</span> dans chaque bouchée
             </h1>
             
             <p className="text-lg text-gray-600 leading-relaxed max-w-lg mx-auto md:mx-0 animate-fade-in-up">
-              Découvrez les beignets africains authentiques de M.A Cuisine, préparés avec amour et des recettes transmises de génération en génération. Accompagnés de nos jus de fruits exotiques au gingembre et à l'hibiscus.
+              Découvrez les plats traditionnels marocains de M.A Cuisine, préparés avec amour et des recettes transmises de génération en génération. Couscous, tajines et pâtisseries authentiques.
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center md:justify-start animate-fade-in-up">
@@ -74,8 +70,8 @@ export default function HeroSection({ onOpenCart }: HeroSectionProps) {
               
               {/* Main Image */}
               <img 
-                src="https://i.postimg.cc/8kBBcJqX/Ma-Cuisine-1.jpg" 
-                alt="M.A Cuisine Beignets" 
+                src={heroImage}
+                alt="M.A Cuisine Plats Marocains" 
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-white shadow-2xl"
               />
               

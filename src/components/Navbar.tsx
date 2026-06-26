@@ -38,16 +38,13 @@ export default function Navbar({ cartCount, onOpenCart }: NavbarProps) {
             <div className="w-10 h-10 md:w-12 md:h-12 bg-[#8B4513] rounded-full flex items-center justify-center text-xl md:text-2xl">
               🍩
             </div>
-            <span className="text-lg md:text-xl font-bold text-[#8B4513] font-serif">M.A Cuisine</span>
+            <span className="text-lg md:text-xl font-bold text-[#8B4513]">M.A Cuisine</span>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
             <button onClick={() => scrollToSection("hero")} className="text-[#2C1810] hover:text-[#D2691E] transition-colors font-medium">
               Accueil
-            </button>
-            <button onClick={() => scrollToSection("produits")} className="text-[#2C1810] hover:text-[#D2691E] transition-colors font-medium">
-              Produits
             </button>
             <button onClick={() => scrollToSection("menu")} className="text-[#2C1810] hover:text-[#D2691E] transition-colors font-medium">
               Menu
@@ -85,8 +82,6 @@ export default function Navbar({ cartCount, onOpenCart }: NavbarProps) {
               )}
             </button>
             <button
-              variant="ghost"
-              size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 text-[#8B4513]"
             >
@@ -100,9 +95,6 @@ export default function Navbar({ cartCount, onOpenCart }: NavbarProps) {
           <div className="md:hidden bg-white rounded-b-2xl shadow-lg pb-4">
             <button onClick={() => scrollToSection("hero")} className="block w-full text-left px-4 py-3 text-[#2C1810] hover:bg-[#FFF8F0]">
               Accueil
-            </button>
-            <button onClick={() => scrollToSection("produits")} className="block w-full text-left px-4 py-3 text-[#2C1810] hover:bg-[#FFF8F0]">
-              Produits
             </button>
             <button onClick={() => scrollToSection("menu")} className="block w-full text-left px-4 py-3 text-[#2C1810] hover:bg-[#FFF8F0]">
               Menu

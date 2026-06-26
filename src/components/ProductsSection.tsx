@@ -2,10 +2,15 @@
 
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import imgBeignets from "@/assets/images/IMG-20230911-WA0002.jpg";
+import imgPastilla from "@/assets/images/IMG-20230830-WA0001.jpg";
+import imgTajine from "@/assets/images/IMG-20231104-WA0010.jpg";
+import imgCouscous from "@/assets/images/IMG-20231104-WA0011.jpg";
 
 interface Product {
   id: number;
   name: string;
+  nameAr: string;
   description: string;
   price: number;
   image: string;
@@ -19,35 +24,39 @@ interface ProductsSectionProps {
 const products: Product[] = [
   {
     id: 1,
-    name: "Beignets Sucrés",
-    description: "Doux, moelleux et légèrement sucrés. Un classique indémodable.",
-    price: 5,
-    image: "https://i.postimg.cc/dtJbBFH0/beignets.jpg",
-    category: "Beignets"
+    name: "Couscous Royal",
+    nameAr: "كسكسي ملكي",
+    description: "Semoule fine, légumes mijotés, agneau et poulet. Le plat star du Maroc.",
+    price: 18,
+    image: imgCouscous,
+    category: "Plats"
   },
   {
     id: 2,
-    name: "Beignets Salés",
-    description: "Savoureux et relevés avec des épices africaines authentiques.",
-    price: 5,
-    image: "https://i.postimg.cc/BvXnN8HY/beignets-sales.jpg",
-    category: "Beignets"
+    name: "Tajine Poulet Citron",
+    nameAr: "طاجين دجاج ليمون",
+    description: "Poulet fondant, citrons confits et olives vertes.",
+    price: 15,
+    image: imgTajine,
+    category: "Plats"
   },
   {
     id: 3,
-    name: "Beignets aux Vermicelles",
-    description: "Une texture unique avec des vermicelles croustillants.",
-    price: 5,
-    image: "https://i.postimg.cc/fy4d0qYF/vermhicelles.jpg",
-    category: "Beignets"
+    name: "Pastilla au Poulet",
+    nameAr: "بسطيلة دجاج",
+    description: "Feuille de brick croustillante, poulet et amandes.",
+    price: 12,
+    image: imgPastilla,
+    category: "Plats"
   },
   {
     id: 4,
-    name: "Jus Gingembre-Hibiscus",
-    description: "Rafraîchissant et plein de vertus. Le mélange parfait.",
+    name: "Beignets Marocains",
+    nameAr: "المقليات",
+    description: "Beignets sucrés parfumés à la fleur d'oranger.",
     price: 5,
-    image: "https://i.postimg.cc/85CckX2j/jus.jpg",
-    category: "Jus"
+    image: imgBeignets,
+    category: "Desserts"
   }
 ];
 
@@ -57,9 +66,9 @@ export default function ProductsSection({ onAddToCart }: ProductsSectionProps) {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#8B4513] font-serif mb-4">Nos Créations</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#8B4513] mb-4">Nos Spécialités</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Des produits artisanaux préparés avec des ingrédients de qualité pour éveiller vos papilles
+            Des plats traditionnels préparés avec passion et des ingrédients de qualité
           </p>
         </div>
 
@@ -85,7 +94,8 @@ export default function ProductsSection({ onAddToCart }: ProductsSectionProps) {
 
               {/* Info */}
               <div className="p-5">
-                <h3 className="text-lg font-semibold text-[#2C1810] mb-2">{product.name}</h3>
+                <h3 className="text-lg font-semibold text-[#2C1810] mb-1">{product.name}</h3>
+                <p className="text-amber-700 text-sm font-arabic mb-2">{product.nameAr}</p>
                 <p className="text-gray-600 text-sm mb-4 line-clamp-2">{product.description}</p>
                 
                 <div className="flex items-center justify-between">

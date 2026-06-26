@@ -1,91 +1,125 @@
 "use client";
 
 import { useState } from "react";
-import { Leaf, Flame, Star, Flower, Wheat } from "lucide-react";
+import { Leaf, Flame, Star, UtensilsCrossed } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import imgBeignets from "@/assets/images/IMG-20230911-WA0002.jpg";
+import imgPastilla from "@/assets/images/IMG-20230830-WA0001.jpg";
+import imgTajine from "@/assets/images/IMG-20231104-WA0010.jpg";
+import imgCouscous from "@/assets/images/IMG-20231104-WA0011.jpg";
+import imgHarira from "@/assets/images/IMG_20210508_102007.jpg";
+import imgMintTea from "@/assets/images/IMG-20260320-WA0023.jpg";
 
 interface MenuItem {
   id: number;
   name: string;
+  nameAr: string;
   description: string;
   price: number;
   image: string;
   tag: string;
-  tagIcon: "leaf" | "flame" | "star" | "flower" | "wheat";
+  tagIcon: "star" | "flame" | "leaf" | "utensils";
   category: string;
 }
 
 const menuItems: MenuItem[] = [
   {
     id: 1,
-    name: "Beignets Sucrés (x10)",
-    description: "Doux, moelleux et légèrement sucrés. Un classique indémodable qui fond dans la bouche.",
-    price: 5,
-    image: "https://i.postimg.cc/dtJbBFH0/beignets.jpg",
-    tag: "Classique",
+    name: "Couscous Royal",
+    nameAr: "كسكسي ملكي",
+    description: "Semoule fine, légumes mijotés, agneau et poulet. Le plat star du Maroc.",
+    price: 18,
+    image: imgCouscous,
+    tag: "Best-seller",
     tagIcon: "star",
-    category: "Beignets"
+    category: "Plats"
   },
   {
     id: 2,
-    name: "Beignets Salés (x10)",
-    description: "Savoureux et relevés avec des épices africaines authentiques. Parfait pour l'apéritif.",
-    price: 5,
-    image: "https://i.postimg.cc/BvXnN8HY/beignets-sales.jpg",
-    tag: "Épicé",
+    name: "Tajine Poulet Citron",
+    nameAr: "طاجين دجاج ليمون",
+    description: "Poulet fondant, citrons confits, olives vertes et herbes fraîches.",
+    price: 15,
+    image: imgTajine,
+    tag: "Populaire",
     tagIcon: "flame",
-    category: "Beignets"
+    category: "Plats"
   },
   {
     id: 3,
-    name: "Beignets Vermicelles (x10)",
-    description: "Une texture unique avec des vermicelles croustillants. Une explosion de saveurs.",
-    price: 5,
-    image: "https://i.postimg.cc/fy4d0qYF/vermhicelles.jpg",
-    tag: "Populaire",
+    name: "Pastilla au Poulet",
+    nameAr: "بسطيلة دجاج",
+    description: "Feuille de brick croustillante, poulet, amandes grillées et cannelle.",
+    price: 12,
+    image: imgPastilla,
+    tag: "Classique",
     tagIcon: "star",
-    category: "Beignets"
+    category: "Plats"
   },
   {
     id: 4,
-    name: "Jus Gingembre-Hibiscus",
-    description: "Rafraîchissant et plein de vertus. Le mélange parfait entre douceur et fraîcheur.",
-    price: 5,
-    image: "https://i.postimg.cc/85CckX2j/jus.jpg",
-    tag: "Infusé",
-    tagIcon: "flower",
-    category: "Jus"
+    name: "Kefta Tajine",
+    nameAr: "طاجين كفتة",
+    description: "Boulettes de viande hachée sauce tomate épicée et œuf poché.",
+    price: 14,
+    image: imgTajine,
+    tag: "Épicé",
+    tagIcon: "flame",
+    category: "Plats"
   },
   {
     id: 5,
-    name: "Beignets Sans Gluten",
-    description: "Option disponible sur commande. Les mêmes saveurs, sans gluten.",
-    price: 7,
-    image: "https://i.postimg.cc/dtJbBFH0/beignets.jpg",
-    tag: "Sur commande",
-    tagIcon: "wheat",
-    category: "Options"
+    name: "Harira",
+    nameAr: "حريرة",
+    description: "Soupe traditionnelle marocaine aux lentilles, pois chiches et herbes.",
+    price: 6,
+    image: imgHarira,
+    tag: "Soupe",
+    tagIcon: "leaf",
+    category: "Entrées"
   },
   {
     id: 6,
-    name: "Commande Personnalisée",
-    description: "Commande minimum 40€. Contactez-nous pour un devis personnalisé.",
-    price: 40,
-    image: "https://i.postimg.cc/8kBBcJqX/Ma-Cuisine-1.jpg",
-    tag: "Événement",
+    name: "Pastilla au Poisson",
+    nameAr: "بسطيلة سمك",
+    description: "Feuille de brick, poisson, fruits de mer et crevettes.",
+    price: 16,
+    image: imgPastilla,
+    tag: "Spécialité",
+    tagIcon: "utensils",
+    category: "Plats"
+  },
+  {
+    id: 7,
+    name: "Mint Tea",
+    nameAr: "شاي بالنعناع",
+    description: "Thé à la menthe fraîche préparé à la marocaine, menthes fraîches et sucre.",
+    price: 3,
+    image: imgMintTea,
+    tag: "Boisson",
+    tagIcon: "leaf",
+    category: "Boissons"
+  },
+  {
+    id: 8,
+    name: "Beignets Marocains",
+    nameAr: "المقليات",
+    description: "Beignets croustillants sucrés, parfumés à l'anis et à la fleur d'oranger.",
+    price: 5,
+    image: imgBeignets,
+    tag: "Dessert",
     tagIcon: "star",
-    category: "Options"
+    category: "Desserts"
   }
 ];
 
-const categories = ["Tous", "Beignets", "Jus", "Options"];
+const categories = ["Tous", "Plats", "Entrées", "Boissons", "Desserts"];
 
 const tagIcons = {
-  leaf: Leaf,
-  flame: Flame,
   star: Star,
-  flower: Flower,
-  wheat: Wheat
+  flame: Flame,
+  leaf: Leaf,
+  utensils: UtensilsCrossed
 };
 
 export default function MenuSection() {
@@ -100,9 +134,9 @@ export default function MenuSection() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#8B4513] font-serif mb-4">Notre Menu</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#8B4513] mb-4">Notre Menu</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Explorez notre carte complète avec toutes nos créations
+            Explorez notre carte traditionnelle marocaine
           </p>
         </div>
 
@@ -140,13 +174,14 @@ export default function MenuSection() {
                 />
                 <div className="flex-1 flex flex-col justify-between">
                   <div>
-                    <div className="flex justify-between items-start mb-2">
+                    <div className="flex justify-between items-start mb-1">
                       <h3 className="font-semibold text-[#2C1810]">{item.name}</h3>
                       <span className="font-bold text-[#8B4513] text-lg">{item.price}€</span>
                     </div>
+                    <p className="text-amber-700 text-sm font-arabic mb-1">{item.nameAr}</p>
                     <p className="text-gray-600 text-sm mb-2 line-clamp-2">{item.description}</p>
                   </div>
-                  <span className="inline-flex items-center gap-1 bg-green-100 text-green-700 px-2 py-1 rounded-md text-xs w-fit">
+                  <span className="inline-flex items-center gap-1 bg-amber-100 text-amber-700 px-2 py-1 rounded-md text-xs w-fit">
                     <IconComponent className="h-3 w-3" />
                     {item.tag}
                   </span>

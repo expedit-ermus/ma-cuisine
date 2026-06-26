@@ -15,6 +15,7 @@ import CheckoutModal from "./CheckoutModal";
 interface Product {
   id: number;
   name: string;
+  nameAr: string;
   description: string;
   price: number;
   image: string;
@@ -24,6 +25,7 @@ interface Product {
 interface CartItem {
   id: number;
   name: string;
+  nameAr: string;
   price: number;
   quantity: number;
   image: string;
@@ -78,11 +80,7 @@ export default function SiteLayout() {
         onOpenCart={() => setIsCartOpen(true)}
       />
       
-      <HeroSection 
-        onOpenCart={() => setIsCartOpen(true)}
-        cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)}
-      />
-      
+      <HeroSection onOpenCart={() => setIsCartOpen(true)} />
       <ProductsSection onAddToCart={addToCart} />
       <MenuSection />
       <AboutSection />

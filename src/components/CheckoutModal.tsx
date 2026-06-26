@@ -11,7 +11,7 @@ import { Check, MapPin, Clock, Phone } from "lucide-react";
 interface CheckoutModalProps {
   isOpen: boolean;
   onClose: () => void;
-  cart: Array<{ id: number; name: string; price: number; quantity: number; image: string }>;
+  cart: Array<{ id: number; name: string; nameAr: string; price: number; quantity: number; image: string }>;
   total: number;
 }
 
@@ -28,7 +28,7 @@ export default function CheckoutModal({ isOpen, onClose, cart, total }: Checkout
     e.preventDefault();
     // Create WhatsApp message
     const orderItems = cart.map(item => `• ${item.name} x${item.quantity} - ${item.price * item.quantity}€`).join("%0A");
-    const message = `🍩 NOUVELLE COMMANDE M.A Cuisine%0A%0A` +
+    const message = `🍽️ NOUVELLE COMMANDE M.A Cuisine%0A%0A` +
       `👤 Nom: ${formData.name}%0A` +
       `📞 Téléphone: ${formData.phone}%0A` +
       `📍 Adresse: ${formData.address}%0A` +
@@ -49,25 +49,25 @@ export default function CheckoutModal({ isOpen, onClose, cart, total }: Checkout
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-md bg-[#FFF8F0] border-[#D2691E] max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-md bg-amber-50 border-amber-300 max-h-[90vh] overflow-y-auto">
         {step === "form" ? (
           <>
             <DialogHeader>
-              <DialogTitle className="text-[#8B4513] flex items-center gap-2 font-serif text-xl">
-                🍩 Finaliser la commande
+              <DialogTitle className="text-amber-900 flex items-center gap-2 text-xl">
+                🍽️ Finaliser la commande
               </DialogTitle>
             </DialogHeader>
 
             {/* Order Summary */}
-            <div className="bg-[#8B4513]/10 rounded-xl p-4 mb-4">
-              <p className="text-[#8B4513] font-medium mb-2">Récapitulatif :</p>
+            <div className="bg-amber-100 rounded-xl p-4 mb-4">
+              <p className="text-amber-900 font-medium mb-2">Récapitulatif :</p>
               {cart.map(item => (
-                <div key={item.id} className="flex justify-between text-sm text-[#2C1810]">
+                <div key={item.id} className="flex justify-between text-sm text-amber-800">
                   <span>{item.name} x{item.quantity}</span>
                   <span>{item.price * item.quantity}€</span>
                 </div>
               ))}
-              <div className="border-t border-[#8B4513]/20 mt-2 pt-2 flex justify-between font-bold text-[#8B4513]">
+              <div className="border-t border-amber-300 mt-2 pt-2 flex justify-between font-bold text-amber-900">
                 <span>Total</span>
                 <span>{total}€</span>
               </div>
@@ -75,19 +75,19 @@ export default function CheckoutModal({ isOpen, onClose, cart, total }: Checkout
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <Label htmlFor="name" className="text-[#2C1810]">Nom complet</Label>
+                <Label htmlFor="name" className="text-amber-900">Nom complet</Label>
                 <Input
                   id="name"
                   value={formData.name}
                   onChange={e => setFormData({ ...formData, name: e.target.value })}
                   placeholder="Votre nom"
                   required
-                  className="border-[#D2691E]/30 bg-white focus:border-[#8B4513]"
+                  className="border-amber-300 bg-white focus:border-amber-500"
                 />
               </div>
 
               <div>
-                <Label htmlFor="phone" className="text-[#2C1810]">Téléphone</Label>
+                <Label htmlFor="phone" className="text-amber-900">Téléphone</Label>
                 <Input
                   id="phone"
                   type="tel"
@@ -95,12 +95,12 @@ export default function CheckoutModal({ isOpen, onClose, cart, total }: Checkout
                   onChange={e => setFormData({ ...formData, phone: e.target.value })}
                   placeholder="06 00 00 00 00"
                   required
-                  className="border-[#D2691E]/30 bg-white focus:border-[#8B4513]"
+                  className="border-amber-300 bg-white focus:border-amber-500"
                 />
               </div>
 
               <div>
-                <Label htmlFor="address" className="text-[#2C1810]">Adresse de livraison</Label>
+                <Label htmlFor="address" className="text-amber-900">Adresse de livraison</Label>
                 <Textarea
                   id="address"
                   value={formData.address}
@@ -108,38 +108,38 @@ export default function CheckoutModal({ isOpen, onClose, cart, total }: Checkout
                   placeholder="Votre adresse complète"
                   required
                   rows={2}
-                  className="border-[#D2691E]/30 bg-white focus:border-[#8B4513]"
+                  className="border-amber-300 bg-white focus:border-amber-500"
                 />
               </div>
 
               <div>
-                <Label htmlFor="notes" className="text-[#2C1810]">Notes (optionnel)</Label>
+                <Label htmlFor="notes" className="text-amber-900">Notes (optionnel)</Label>
                 <Input
                   id="notes"
                   value={formData.notes}
                   onChange={e => setFormData({ ...formData, notes: e.target.value })}
-                  placeholder="Sans gluten, sauce séparée, etc."
-                  className="border-[#D2691E]/30 bg-white focus:border-[#8B4513]"
+                  placeholder="Sans gluten, épicé, etc."
+                  className="border-amber-300 bg-white focus:border-amber-500"
                 />
               </div>
 
               {/* Info */}
-              <div className="bg-[#8B4513]/10 rounded-xl p-3 space-y-2">
-                <div className="flex items-center gap-2 text-[#2C1810] text-sm">
-                  <Clock className="h-4 w-4 text-[#FF8C00]" />
+              <div className="bg-amber-100 rounded-xl p-3 space-y-2">
+                <div className="flex items-center gap-2 text-amber-800 text-sm">
+                  <Clock className="h-4 w-4 text-amber-600" />
                   <span>Livraison : 30-45 min</span>
                 </div>
-                <div className="flex items-center gap-2 text-[#2C1810] text-sm">
-                  <MapPin className="h-4 w-4 text-[#FF8C00]" />
+                <div className="flex items-center gap-2 text-amber-800 text-sm">
+                  <MapPin className="h-4 w-4 text-amber-600" />
                   <span>Rayon : Paris & IDF</span>
                 </div>
-                <div className="flex items-center gap-2 text-[#2C1810] text-sm">
-                  <Phone className="h-4 w-4 text-[#FF8C00]" />
+                <div className="flex items-center gap-2 text-amber-800 text-sm">
+                  <Phone className="h-4 w-4 text-amber-600" />
                   <span>Commande min : 40€</span>
                 </div>
               </div>
 
-              <Button type="submit" className="w-full bg-[#8B4513] hover:bg-[#D2691E] text-white py-6 rounded-full text-lg">
+              <Button type="submit" className="w-full bg-amber-600 hover:bg-amber-700 text-white py-6 rounded-full text-lg">
                 Confirmer via WhatsApp
               </Button>
             </form>
@@ -149,11 +149,11 @@ export default function CheckoutModal({ isOpen, onClose, cart, total }: Checkout
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <Check className="h-10 w-10 text-green-600" />
             </div>
-            <h3 className="text-2xl font-bold text-[#8B4513] font-serif mb-2">Commande envoyée !</h3>
+            <h3 className="text-2xl font-bold text-amber-900 mb-2">Commande envoyée !</h3>
             <p className="text-gray-600 mb-4">
               Merci {formData.name} ! Votre commande a été envoyée sur WhatsApp. Nous vous contacterons pour confirmer.
             </p>
-            <Button onClick={handleClose} className="bg-[#8B4513] hover:bg-[#D2691E] rounded-full">
+            <Button onClick={handleClose} className="bg-amber-600 hover:bg-amber-700 rounded-full">
               Fermer
             </Button>
           </div>

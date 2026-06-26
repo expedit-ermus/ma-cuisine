@@ -3,12 +3,7 @@
 import { useState } from "react";
 import { Leaf, Flame, Star, UtensilsCrossed } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import imgBeignets from "@/assets/images/IMG-20230911-WA0002.jpg";
-import imgPastilla from "@/assets/images/IMG-20230830-WA0001.jpg";
-import imgTajine from "@/assets/images/IMG-20231104-WA0010.jpg";
-import imgCouscous from "@/assets/images/IMG-20231104-WA0011.jpg";
-import imgHarira from "@/assets/images/IMG_20210508_102007.jpg";
-import imgMintTea from "@/assets/images/IMG-20260320-WA0023.jpg";
+import { IMGBeignets, IMGPastilla, IMGTajine, IMGCouscous, IMGHarira, IMGMintTea } from "@/assets/images";
 
 interface MenuItem {
   id: number;
@@ -29,7 +24,7 @@ const menuItems: MenuItem[] = [
     nameAr: "كسكسي ملكي",
     description: "Semoule fine, légumes mijotés, agneau et poulet. Le plat star du Maroc.",
     price: 18,
-    image: imgCouscous,
+    image: IMGCouscous,
     tag: "Best-seller",
     tagIcon: "star",
     category: "Plats"
@@ -40,7 +35,7 @@ const menuItems: MenuItem[] = [
     nameAr: "طاجين دجاج ليمون",
     description: "Poulet fondant, citrons confits, olives vertes et herbes fraîches.",
     price: 15,
-    image: imgTajine,
+    image: IMGTajine,
     tag: "Populaire",
     tagIcon: "flame",
     category: "Plats"
@@ -51,7 +46,7 @@ const menuItems: MenuItem[] = [
     nameAr: "بسطيلة دجاج",
     description: "Feuille de brick croustillante, poulet, amandes grillées et cannelle.",
     price: 12,
-    image: imgPastilla,
+    image: IMGPastilla,
     tag: "Classique",
     tagIcon: "star",
     category: "Plats"
@@ -62,7 +57,7 @@ const menuItems: MenuItem[] = [
     nameAr: "طاجين كفتة",
     description: "Boulettes de viande hachée sauce tomate épicée et œuf poché.",
     price: 14,
-    image: imgTajine,
+    image: IMGTajine,
     tag: "Épicé",
     tagIcon: "flame",
     category: "Plats"
@@ -73,7 +68,7 @@ const menuItems: MenuItem[] = [
     nameAr: "حريرة",
     description: "Soupe traditionnelle marocaine aux lentilles, pois chiches et herbes.",
     price: 6,
-    image: imgHarira,
+    image: IMGHarira,
     tag: "Soupe",
     tagIcon: "leaf",
     category: "Entrées"
@@ -84,7 +79,7 @@ const menuItems: MenuItem[] = [
     nameAr: "بسطيلة سمك",
     description: "Feuille de brick, poisson, fruits de mer et crevettes.",
     price: 16,
-    image: imgPastilla,
+    image: IMGPastilla,
     tag: "Spécialité",
     tagIcon: "utensils",
     category: "Plats"
@@ -95,7 +90,7 @@ const menuItems: MenuItem[] = [
     nameAr: "شاي بالنعناع",
     description: "Thé à la menthe fraîche préparé à la marocaine, menthes fraîches et sucre.",
     price: 3,
-    image: imgMintTea,
+    image: IMGMintTea,
     tag: "Boisson",
     tagIcon: "leaf",
     category: "Boissons"
@@ -106,7 +101,7 @@ const menuItems: MenuItem[] = [
     nameAr: "المقليات",
     description: "Beignets croustillants sucrés, parfumés à l'anis et à la fleur d'oranger.",
     price: 5,
-    image: imgBeignets,
+    image: IMGBeignets,
     tag: "Dessert",
     tagIcon: "star",
     category: "Desserts"

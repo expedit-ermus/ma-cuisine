@@ -2,10 +2,7 @@
 
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import imgBeignets from "@/assets/images/IMG-20230911-WA0002.jpg";
-import imgPastilla from "@/assets/images/IMG-20230830-WA0001.jpg";
-import imgTajine from "@/assets/images/IMG-20231104-WA0010.jpg";
-import imgCouscous from "@/assets/images/IMG-20231104-WA0011.jpg";
+import { IMGBeignets, IMGPastilla, IMGTajine, IMGCouscous } from "@/assets/images";
 
 interface Product {
   id: number;
@@ -28,7 +25,7 @@ const products: Product[] = [
     nameAr: "كسكسي ملكي",
     description: "Semoule fine, légumes mijotés, agneau et poulet. Le plat star du Maroc.",
     price: 18,
-    image: imgCouscous,
+    image: IMGCouscous,
     category: "Plats"
   },
   {
@@ -37,7 +34,7 @@ const products: Product[] = [
     nameAr: "طاجين دجاج ليمون",
     description: "Poulet fondant, citrons confits et olives vertes.",
     price: 15,
-    image: imgTajine,
+    image: IMGTajine,
     category: "Plats"
   },
   {
@@ -46,7 +43,7 @@ const products: Product[] = [
     nameAr: "بسطيلة دجاج",
     description: "Feuille de brick croustillante, poulet et amandes.",
     price: 12,
-    image: imgPastilla,
+    image: IMGPastilla,
     category: "Plats"
   },
   {
@@ -55,7 +52,7 @@ const products: Product[] = [
     nameAr: "المقليات",
     description: "Beignets sucrés parfumés à la fleur d'oranger.",
     price: 5,
-    image: imgBeignets,
+    image: IMGBeignets,
     category: "Desserts"
   }
 ];

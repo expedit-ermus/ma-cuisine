@@ -134,12 +134,12 @@ const ChatBot = () => {
       return "Avec plaisir ! N'hésitez pas si vous avez d'autres questions. 😊";
     }
 
-    if (msg.includes("/deliv")) {
-      return "🚚 La livraison est disponible dans un rayon de 10km. Frais de livraison : 3€. Commande minimum : 20€.";
+    if (msg.includes("livraison") || msg.includes("/deliv")) {
+      return "🚚 La livraison est disponible dans un rayon de 10km. Frais de livraison : 3€. Commande minimum : 40€.";
     }
 
     if (msg.includes("réservation") || msg.includes("reserve")) {
-      return "📅 Pour réserver une table, appelez-nous au 01 23 45 67 89 ou utilisez notre formulaire de réservation sur le site.";
+      return "📅 Pour réserver une table, appelez-nous au 01 23 45 67 89.";
     }
 
     return "Je ne suis pas sûr de comprendre. Tapez \"menu\" pour voir nos plats, \"commander\" pour passer une commande, ou \"horaires\" pour les horaires d'ouverture.";
@@ -179,7 +179,7 @@ const ChatBot = () => {
     return (
       <Button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 h-14 w-14 rounded-full bg-purple-600 hover:bg-purple-700 shadow-lg flex items-center justify-center z-50 transition-all hover:scale-105"
+        className="fixed bottom-6 right-6 h-14 w-14 rounded-full bg-[#8B4513] hover:bg-[#D2691E] shadow-lg flex items-center justify-center z-50 transition-all hover:scale-105"
         size="icon"
       >
         <MessageCircle className="h-6 w-6 text-white" />
@@ -197,7 +197,7 @@ const ChatBot = () => {
       <div className="fixed bottom-6 right-6 z-50">
         <Button
           onClick={() => setIsMinimized(false)}
-          className="h-14 w-14 rounded-full bg-purple-600 hover:bg-purple-700 shadow-lg flex items-center justify-center relative"
+          className="h-14 w-14 rounded-full bg-[#8B4513] hover:bg-[#D2691E] shadow-lg flex items-center justify-center relative"
           size="icon"
         >
           <MessageCircle className="h-6 w-6 text-white" />
@@ -219,22 +219,22 @@ const ChatBot = () => {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 w-96 h-[600px] max-h-[80vh] bg-gray-900 rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50 border border-gray-700">
+    <div className="fixed bottom-6 right-6 w-96 h-[600px] max-h-[80vh] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50 border border-amber-200">
       {/* Header */}
-      <div className="bg-purple-700 p-4 flex items-center justify-between">
+      <div className="bg-[#8B4513] p-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 bg-purple-500 rounded-full flex items-center justify-center">
+          <div className="h-10 w-10 bg-[#D2691E] rounded-full flex items-center justify-center">
             <Bot className="h-5 w-5 text-white" />
           </div>
           <div>
             <h3 className="text-white font-semibold">MA Cuisine Assistant</h3>
-            <p className="text-purple-200 text-xs">En ligne</p>
+            <p className="text-amber-200 text-xs">En ligne</p>
           </div>
         </div>
         <div className="flex items-center gap-1">
           <button
             onClick={() => setShowCart(!showCart)}
-            className="p-2 hover:bg-purple-600 rounded-lg transition-colors relative"
+            className="p-2 hover:bg-[#D2691E] rounded-lg transition-colors relative"
           >
             <ShoppingBag className="h-5 w-5 text-white" />
             {getCartCount() > 0 && (
@@ -245,13 +245,13 @@ const ChatBot = () => {
           </button>
           <button
             onClick={() => setIsMinimized(true)}
-            className="p-2 hover:bg-purple-600 rounded-lg transition-colors"
+            className="p-2 hover:bg-[#D2691E] rounded-lg transition-colors"
           >
             <Minus className="h-5 w-5 text-white" />
           </button>
           <button
             onClick={() => setIsOpen(false)}
-            className="p-2 hover:bg-purple-600 rounded-lg transition-colors"
+            className="p-2 hover:bg-[#D2691E] rounded-lg transition-colors"
           >
             <X className="h-5 w-5 text-white" />
           </button>
@@ -260,16 +260,16 @@ const ChatBot = () => {
 
       {/* Cart View */}
       {showCart && (
-        <div className="flex-1 overflow-y-auto p-4 bg-gray-800">
+        <div className="flex-1 overflow-y-auto p-4 bg-amber-50">
           <div className="flex items-center justify-between mb-4">
-            <h4 className="text-white font-semibold flex items-center gap-2">
+            <h4 className="text-amber-900 font-semibold flex items-center gap-2">
               <ShoppingBag className="h-4 w-4" /> Votre Panier
             </h4>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setShowCart(false)}
-              className="text-purple-300 hover:text-purple-100"
+              className="text-amber-600 hover:text-amber-800"
             >
               Retour au chat
             </Button>
@@ -277,49 +277,49 @@ const ChatBot = () => {
 
           {cart.length === 0 ? (
             <div className="text-center py-8">
-              <ShoppingBag className="h-12 w-12 text-gray-600 mx-auto mb-3" />
-              <p className="text-gray-400">Votre panier est vide</p>
-              <p className="text-gray-500 text-sm mt-1">Ajoutez des plats ci-dessous</p>
+              <ShoppingBag className="h-12 w-12 text-amber-300 mx-auto mb-3" />
+              <p className="text-amber-600">Votre panier est vide</p>
+              <p className="text-amber-400 text-sm mt-1">Ajoutez des plats ci-dessous</p>
             </div>
           ) : (
             <div className="space-y-3">
               {cart.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-gray-700 rounded-lg p-3 flex items-center justify-between"
+                  className="bg-white rounded-lg p-3 flex items-center justify-between border border-amber-200"
                 >
                   <div className="flex-1">
-                    <p className="text-white text-sm font-medium">{item.name}</p>
-                    <p className="text-purple-300 text-xs">{item.price} €</p>
+                    <p className="text-amber-900 text-sm font-medium">{item.name}</p>
+                    <p className="text-amber-600 text-xs">{item.price} €</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => removeFromCart(item.id)}
-                      className="h-7 w-7 bg-gray-600 hover:bg-gray-500 rounded-full flex items-center justify-center"
+                      className="h-7 w-7 bg-amber-100 hover:bg-amber-200 rounded-full flex items-center justify-center"
                     >
-                      <Minus className="h-3 w-3 text-white" />
+                      <Minus className="h-3 w-3 text-amber-700" />
                     </button>
-                    <span className="text-white w-6 text-center">{item.quantity}</span>
+                    <span className="text-amber-900 w-6 text-center">{item.quantity}</span>
                     <button
                       onClick={() => addToCart(item)}
-                      className="h-7 w-7 bg-purple-600 hover:bg-purple-500 rounded-full flex items-center justify-center"
+                      className="h-7 w-7 bg-[#8B4513] hover:bg-[#D2691E] rounded-full flex items-center justify-center"
                     >
                       <Plus className="h-3 w-3 text-white" />
                     </button>
                     <button
                       onClick={() => deleteFromCart(item.id)}
-                      className="h-7 w-7 bg-red-600/50 hover:bg-red-600 rounded-full flex items-center justify-center ml-2"
+                      className="h-7 w-7 bg-red-100 hover:bg-red-200 rounded-full flex items-center justify-center ml-2"
                     >
-                      <Trash2 className="h-3 w-3 text-white" />
+                      <Trash2 className="h-3 w-3 text-red-600" />
                     </button>
                   </div>
                 </div>
               ))}
 
-              <div className="border-t border-gray-600 pt-3 mt-3">
+              <div className="border-t border-amber-300 pt-3 mt-3">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-gray-300">Total</span>
-                  <span className="text-white font-bold text-lg">{getCartTotal()} €</span>
+                  <span className="text-amber-700">Total</span>
+                  <span className="text-amber-900 font-bold text-lg">{getCartTotal()} €</span>
                 </div>
                 <Button
                   onClick={() => {
@@ -328,7 +328,7 @@ const ChatBot = () => {
                     sendMessage();
                     setTimeout(() => setInputValue(""), 100);
                   }}
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+                  className="w-full bg-[#8B4513] hover:bg-[#D2691E] text-white"
                 >
                   Confirmer la commande
                 </Button>
@@ -338,19 +338,19 @@ const ChatBot = () => {
 
           {/* Quick Add Section */}
           <div className="mt-6">
-            <h5 className="text-gray-300 text-sm font-medium mb-3">Ajouter au panier</h5>
+            <h5 className="text-amber-700 text-sm font-medium mb-3">Ajouter au panier</h5>
             <div className="space-y-2">
               {menuItems.slice(0, 4).map((item) => (
                 <button
                   key={item.id}
                   onClick={() => addToCart(item)}
-                  className="w-full bg-gray-700 hover:bg-gray-600 rounded-lg p-3 flex items-center justify-between transition-colors"
+                  className="w-full bg-white hover:bg-amber-100 rounded-lg p-3 flex items-center justify-between transition-colors border border-amber-200"
                 >
                   <div className="text-left">
-                    <p className="text-white text-sm">{item.name}</p>
-                    <p className="text-purple-300 text-xs">{item.price} €</p>
+                    <p className="text-amber-900 text-sm">{item.name}</p>
+                    <p className="text-amber-600 text-xs">{item.price} €</p>
                   </div>
-                  <Plus className="h-5 w-5 text-purple-300" />
+                  <Plus className="h-5 w-5 text-amber-600" />
                 </button>
               ))}
             </div>
@@ -361,7 +361,7 @@ const ChatBot = () => {
       {/* Chat View */}
       {!showCart && (
         <>
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-800">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-amber-50">
             {messages.map((message) => (
               <div
                 key={message.id}
@@ -372,21 +372,21 @@ const ChatBot = () => {
                 <div
                   className={`h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0 ${
                     message.role === "user"
-                      ? "bg-purple-600"
-                      : "bg-gray-700"
+                      ? "bg-[#8B4513]"
+                      : "bg-amber-200"
                   }`}
                 >
                   {message.role === "user" ? (
                     <User className="h-4 w-4 text-white" />
                   ) : (
-                    <Bot className="h-4 w-4 text-purple-300" />
+                    <Bot className="h-4 w-4 text-amber-700" />
                   )}
                 </div>
                 <div
                   className={`rounded-2xl px-4 py-2 max-w-[80%] whitespace-pre-line text-sm ${
                     message.role === "user"
-                      ? "bg-purple-600 text-white rounded-tr-sm"
-                      : "bg-gray-700 text-gray-100 rounded-tl-sm"
+                      ? "bg-[#8B4513] text-white rounded-tr-sm"
+                      : "bg-white text-amber-900 rounded-tl-sm border border-amber-200"
                   }`}
                 >
                   {message.content}
@@ -403,7 +403,7 @@ const ChatBot = () => {
                 setInputValue("menu");
                 sendMessage();
               }}
-              className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-gray-200 text-xs rounded-full transition-colors"
+              className="px-3 py-1 bg-white hover:bg-amber-100 text-amber-700 text-xs rounded-full transition-colors border border-amber-200"
             >
               📋 Menu
             </button>
@@ -412,7 +412,7 @@ const ChatBot = () => {
                 setInputValue("commander");
                 sendMessage();
               }}
-              className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-gray-200 text-xs rounded-full transition-colors"
+              className="px-3 py-1 bg-white hover:bg-amber-100 text-amber-700 text-xs rounded-full transition-colors border border-amber-200"
             >
               🛒 Commander
             </button>
@@ -421,7 +421,7 @@ const ChatBot = () => {
                 setInputValue("horaires");
                 sendMessage();
               }}
-              className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-gray-200 text-xs rounded-full transition-colors"
+              className="px-3 py-1 bg-white hover:bg-amber-100 text-amber-700 text-xs rounded-full transition-colors border border-amber-200"
             >
               🕐 Horaires
             </button>
@@ -430,26 +430,26 @@ const ChatBot = () => {
                 setInputValue("livraison");
                 sendMessage();
               }}
-              className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-gray-200 text-xs rounded-full transition-colors"
+              className="px-3 py-1 bg-white hover:bg-amber-100 text-amber-700 text-xs rounded-full transition-colors border border-amber-200"
             >
               🚚 Livraison
             </button>
           </div>
 
           {/* Input */}
-          <div className="p-4 bg-gray-900 border-t border-gray-700">
+          <div className="p-4 bg-white border-t border-amber-200">
             <div className="flex gap-2">
               <Input
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Tapez votre message..."
-                className="flex-1 bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 rounded-full"
+                className="flex-1 bg-amber-50 border-amber-300 text-amber-900 placeholder:text-amber-400 rounded-full"
               />
               <Button
                 onClick={sendMessage}
                 disabled={!inputValue.trim()}
-                className="rounded-full bg-purple-600 hover:bg-purple-700 px-4"
+                className="rounded-full bg-[#8B4513] hover:bg-[#D2691E] px-4"
                 size="icon"
               >
                 <Send className="h-4 w-4" />

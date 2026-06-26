@@ -11,6 +11,7 @@ import CTASection from "./CTASection";
 import Footer from "./Footer";
 import CartSidebar from "./CartSidebar";
 import CheckoutModal from "./CheckoutModal";
+import ChatBot from "./ChatBot";
 
 interface Product {
   id: number;
@@ -103,6 +104,8 @@ export default function SiteLayout() {
         cart={cart}
         total={total}
       />
+
+      <ChatBot />
     </div>
   );
 }

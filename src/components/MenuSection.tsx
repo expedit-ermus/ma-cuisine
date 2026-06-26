@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Leaf, Flame, Star, UtensilsCrossed } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { IMGBeignets, IMGPastilla, IMGTajine, IMGCouscous, IMGHarira, IMGMintTea } from "@/assets/images";
+import { placeholders } from "@/lib/images";
 
 interface MenuItem {
   id: number;
@@ -11,7 +11,7 @@ interface MenuItem {
   nameAr: string;
   description: string;
   price: number;
-  image: string;
+  imageKey: keyof typeof placeholders;
   tag: string;
   tagIcon: "star" | "flame" | "leaf" | "utensils";
   category: string;
@@ -24,7 +24,7 @@ const menuItems: MenuItem[] = [
     nameAr: "كسكسي ملكي",
     description: "Semoule fine, légumes mijotés, agneau et poulet. Le plat star du Maroc.",
     price: 18,
-    image: IMGCouscous,
+    imageKey: "couscous",
     tag: "Best-seller",
     tagIcon: "star",
     category: "Plats"
@@ -35,7 +35,7 @@ const menuItems: MenuItem[] = [
     nameAr: "طاجين دجاج ليمون",
     description: "Poulet fondant, citrons confits, olives vertes et herbes fraîches.",
     price: 15,
-    image: IMGTajine,
+    imageKey: "tajine",
     tag: "Populaire",
     tagIcon: "flame",
     category: "Plats"
@@ -46,7 +46,7 @@ const menuItems: MenuItem[] = [
     nameAr: "بسطيلة دجاج",
     description: "Feuille de brick croustillante, poulet, amandes grillées et cannelle.",
     price: 12,
-    image: IMGPastilla,
+    imageKey: "pastilla",
     tag: "Classique",
     tagIcon: "star",
     category: "Plats"
@@ -57,7 +57,7 @@ const menuItems: MenuItem[] = [
     nameAr: "طاجين كفتة",
     description: "Boulettes de viande hachée sauce tomate épicée et œuf poché.",
     price: 14,
-    image: IMGTajine,
+    imageKey: "tajine",
     tag: "Épicé",
     tagIcon: "flame",
     category: "Plats"
@@ -68,7 +68,7 @@ const menuItems: MenuItem[] = [
     nameAr: "حريرة",
     description: "Soupe traditionnelle marocaine aux lentilles, pois chiches et herbes.",
     price: 6,
-    image: IMGHarira,
+    imageKey: "harira",
     tag: "Soupe",
     tagIcon: "leaf",
     category: "Entrées"
@@ -79,7 +79,7 @@ const menuItems: MenuItem[] = [
     nameAr: "بسطيلة سمك",
     description: "Feuille de brick, poisson, fruits de mer et crevettes.",
     price: 16,
-    image: IMGPastilla,
+    imageKey: "pastilla",
     tag: "Spécialité",
     tagIcon: "utensils",
     category: "Plats"
@@ -90,7 +90,7 @@ const menuItems: MenuItem[] = [
     nameAr: "شاي بالنعناع",
     description: "Thé à la menthe fraîche préparé à la marocaine, menthes fraîches et sucre.",
     price: 3,
-    image: IMGMintTea,
+    imageKey: "mintTea",
     tag: "Boisson",
     tagIcon: "leaf",
     category: "Boissons"
@@ -101,7 +101,7 @@ const menuItems: MenuItem[] = [
     nameAr: "المقليات",
     description: "Beignets croustillants sucrés, parfumés à l'anis et à la fleur d'oranger.",
     price: 5,
-    image: IMGBeignets,
+    imageKey: "beignets",
     tag: "Dessert",
     tagIcon: "star",
     category: "Desserts"
@@ -163,7 +163,7 @@ export default function MenuSection() {
                 className="flex flex-col sm:flex-row gap-4 bg-white p-4 rounded-2xl hover:shadow-lg transition-all"
               >
                 <img 
-                  src={item.image} 
+                  src={placeholders[item.imageKey]} 
                   alt={item.name}
                   className="w-full sm:w-28 h-28 object-cover rounded-xl"
                 />

@@ -1,7 +1,7 @@
 "use client";
 
 import { Leaf, Heart, Truck, Award } from "lucide-react";
-import { IMGEmma } from "@/assets/images";
+import { placeholders } from "@/lib/images";
 
 const features = [
   { icon: Leaf, title: "Ingrédients frais", description: "Produits de qualité sélectionnés" },
@@ -18,12 +18,12 @@ export default function AboutSection() {
           {/* Images */}
           <div className="relative">
             <img 
-              src={IMGEmma} 
+              src={placeholders.chef} 
               alt="Emma - M.A Cuisine"
               className="w-full h-80 md:h-[400px] object-cover rounded-2xl shadow-2xl"
             />
             <img 
-              src={IMGEmma} 
+              src={placeholders.beignets} 
               alt="Emma en action"
               className="absolute -bottom-6 -right-6 w-32 h-32 md:w-48 md:h-48 object-cover rounded-2xl border-4 border-white shadow-xl hidden md:block"
             />

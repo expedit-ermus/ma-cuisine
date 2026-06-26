@@ -2,7 +2,7 @@
 
 import { Star, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { IMGEmma } from "@/assets/images";
+import { placeholders } from "@/lib/images";
 
 export default function HeroSection({ onOpenCart }: { onOpenCart: () => void }) {
   return (
@@ -70,7 +70,7 @@ export default function HeroSection({ onOpenCart }: { onOpenCart: () => void }) 
               
               {/* Main Image */}
               <img 
-                src={IMGEmma}
+                src={placeholders.chef}
                 alt="M.A Cuisine Plats Marocains" 
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-white shadow-2xl"
               />

@@ -2,7 +2,7 @@
 
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { IMGBeignets, IMGPastilla, IMGTajine, IMGCouscous } from "@/assets/images";
+import { placeholders } from "@/lib/images";
 
 interface Product {
   id: number;
@@ -10,12 +10,12 @@ interface Product {
   nameAr: string;
   description: string;
   price: number;
-  image: string;
+  imageKey: keyof typeof placeholders;
   category: string;
 }
 
 interface ProductsSectionProps {
-  onAddToCart: (product: Product) => void;
+  onAddToCart: (product: Product & { image: string }) => void;
 }
 
 const products: Product[] = [
@@ -25,7 +25,7 @@ const products: Product[] = [
     nameAr: "كسكسي ملكي",
     description: "Semoule fine, légumes mijotés, agneau et poulet. Le plat star du Maroc.",
     price: 18,
-    image: IMGCouscous,
+    imageKey: "couscous",
     category: "Plats"
   },
   {
@@ -34,7 +34,7 @@ const products: Product[] = [
     nameAr: "طاجين دجاج ليمون",
     description: "Poulet fondant, citrons confits et olives vertes.",
     price: 15,
-    image: IMGTajine,
+    imageKey: "tajine",
     category: "Plats"
   },
   {
@@ -43,7 +43,7 @@ const products: Product[] = [
     nameAr: "بسطيلة دجاج",
     description: "Feuille de brick croustillante, poulet et amandes.",
     price: 12,
-    image: IMGPastilla,
+    imageKey: "pastilla",
     category: "Plats"
   },
   {
@@ -52,7 +52,7 @@ const products: Product[] = [
     nameAr: "المقليات",
     description: "Beignets sucrés parfumés à la fleur d'oranger.",
     price: 5,
-    image: IMGBeignets,
+    imageKey: "beignets",
     category: "Desserts"
   }
 ];
@@ -75,12 +75,12 @@ export default function ProductsSection({ onAddToCart }: ProductsSectionProps) {
             <div 
               key={product.id}
               className="bg-[#FFF8F0] rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group cursor-pointer"
-              onClick={() => onAddToCart(product)}
+              onClick={() => onAddToCart({ ...product, image: placeholders[product.imageKey] })}
             >
               {/* Image */}
               <div className="relative h-48 overflow-hidden">
                 <img 
-                  src={product.image} 
+                  src={placeholders[product.imageKey]} 
                   alt={product.name}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />

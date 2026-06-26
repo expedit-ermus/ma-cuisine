@@ -12,6 +12,7 @@ import Footer from "./Footer";
 import CartSidebar from "./CartSidebar";
 import CheckoutModal from "./CheckoutModal";
 import ChatBot from "./ChatBot";
+import { placeholders } from "@/lib/images";
 
 interface Product {
   id: number;

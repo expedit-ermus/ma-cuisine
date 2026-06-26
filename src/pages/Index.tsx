@@ -1,7 +1,7 @@
+"use client";
+
 import SiteLayout from "@/components/SiteLayout";
 
-const Index = () => {
+export default function Index() {
   return <SiteLayout />;
-};
-
-export default Index;
+}
